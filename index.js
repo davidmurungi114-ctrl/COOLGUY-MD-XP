@@ -1,6 +1,7 @@
 const { default: makeWASocket, useMultiFileAuthState, DisconnectReason } = require('@whiskeysockets/baileys')
 const P = require('pino')
 const express = require('express')
+const fs = require('fs')
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
@@ -23,7 +24,8 @@ a{background:red;color:white;padding:15px 30px;border-radius:10px;text-decoratio
   <img src="https://files.catbox.moe/5kxxcs.jpg" />
   <h2>BY PROFESSOR COOLGUY</h2>
   <p>165+ COMMANDS | ANTI-DELETE | AUTO VIEW STATUS</p>
-  <a href="/pair">📲 TAP TO PAIR WHATSAPP</a>
+  <a href="/pair">📲 TAP TO PAIR WHATSAPP</a><br><br>
+  <a href="/clear" style="background:#333">🧹 CLEAR SESSION</a>
 </body>
 </html>
 `)
@@ -52,7 +54,14 @@ button{background:red;color:white;padding:15px 30px;border:none;border-radius:10
 `)
 })
 
+app.get('/clear', (req,res)=>{
+  try { if(fs.existsSync('./session')) fs.rmSync('./session', {recursive:true, force:true}); } catch {}
+  sock = null
+  res.send('<html><body style="background:#000;color:lime;text-align:center;padding:50px;font-family:Arial"><h1>✅ Session Cleared!</h1><h2>Now go to <a href="/pair" style="color:red">/pair</a> again!</h2><p>Old files deleted, ready for fresh code!</p></body></html>')
+})
+
 async function startBot(number) {
+  try { if(fs.existsSync('./session')) fs.rmSync('./session', {recursive:true, force:true}); } catch {}
   const { state, saveCreds } = await useMultiFileAuthState('./session')
   sock = makeWASocket({ logger: P({level:'silent'}), auth: state, browser:['COOLGUY MD XP','Chrome','1.0'] })
   sock.ev.on('creds.update', saveCreds)
@@ -61,8 +70,6 @@ async function startBot(number) {
     if(connection==='close'){ if(lastDisconnect?.error?.output?.statusCode !== DisconnectReason.loggedOut) startBot(number) }
     if(connection==='open') console.log('✅ COOLGUY MD XP LINKED SUCCESSFULLY!')
   })
-
-  // BOT COMMANDS
   sock.ev.on('messages.upsert', async ({messages})=>{
     const m = messages[0]
     if(!m.message) return
@@ -76,19 +83,12 @@ async function startBot(number) {
       let runtime = Math.floor((Date.now()-startTime)/1000)
       let h = Math.floor(runtime/3600), mm = Math.floor((runtime%3600)/60), s = runtime%60
       let ram = (process.memoryUsage().heapUsed/1024/1024).toFixed(2)
-      let menu = `*┌───⭓ COOLGUY-MD XP ⭓───*\n*│* 👤 USER: ${pushName}\n*│* 👑 OWNER: PROFESSOR COOLGUY\n*│* ⏳ RUNTIME: ${h}h ${mm}m ${s}s\n*│* 📊 RAM: ${ram}MB\n*│* 📂 TOTAL COMMANDS: 165\n*│* 🟢 STATUS: ONLINE\n*└───────────────────⭓*\n\nType .ping .alive`
+      let menu = `*COOLGUY-MD XP MENU*\nUSER: ${pushName}\nRUNTIME: ${h}h ${mm}m ${s}s\nRAM: ${ram}MB\nCOMMANDS: 165\n\n.ping .alive .owner`
       await sock.sendMessage(from, {text: menu})
     }
-    if(command==='ping'){
-      let start = Date.now()
-      await sock.sendMessage(from,{text:'Pinging...'})
-      await sock.sendMessage(from,{text:`*🏓 Pong! ${Date.now()-start}ms*`})
-    }
-    if(command==='alive'){
-      await sock.sendMessage(from,{text:`*✅ COOLGUY MD XP IS ALIVE!*`})
-    }
+    if(command==='ping'){ await sock.sendMessage(from,{text:`Pong!`}) }
+    if(command==='alive'){ await sock.sendMessage(from,{text:`✅ COOLGUY MD XP IS ALIVE!`}) }
   })
-
   if (!sock.authState.creds.registered) {
     await new Promise(r => setTimeout(r, 1500));
     const code = await sock.requestPairingCode(number)
@@ -109,7 +109,7 @@ app.get('/code', async (req, res) => {
     <a href="/" style="color:cyan">← Home</a>
     </body></html>`);
   } catch (e) {
-    res.send('Error: ' + e.message + ' - <a href="/pair">Try Again</a>');
+    res.send('Error: ' + e.message + ' - <a href="/pair">Try Again</a> <br> <a href="/clear">Clear Session</a>');
   }
 });
 
