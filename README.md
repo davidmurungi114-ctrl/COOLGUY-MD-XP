@@ -6,6 +6,8 @@
 
 <p align="center">Original WhatsApp Bot By PROFESSOR COOLGUY - No Fork - No Session ID Needed!</p>
 
+<p align="center"><b>⚡ POWERED BY PROFESSOR COOLGUY ⚡</b></p>
+
 ---
 
 ### 📲 HOW TO PAIR - TAP BUTTON BELOW
@@ -35,4 +37,4 @@
 
 **No Session ID Needed - Direct Pair!**
 
-Powered By PROFESSOR COOLGUY
+<h1 align="center">⚡ POWERED BY PROFESSOR COOLGUY ⚡</h1>
