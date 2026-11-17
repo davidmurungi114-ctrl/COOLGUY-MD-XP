@@ -76,15 +76,25 @@ app.get('/code', async (req,res)=>{
     let code = await sock.requestPairingCode(number)
     console.log('CODE:', code, 'for', number)
     res.send(`<html><head><meta name="viewport" content="width=device-width, initial-scale=1"><style>
-body{background:#000;color:#fff;text-align:center;font-family:Arial;padding:15px}
+body{background:#000;color:#fff;text-align:center;font-family:Arial;padding:15px;margin:0;overflow-x:hidden}
 img{width:90%;max-width:420px;border-radius:25px;border:4px solid red;box-shadow:0 0 30px red;margin-bottom:20px}
 h1.code{font-size:28px;letter-spacing:1px;color:white;border:4px solid lime;padding:30px 10px;border-radius:20px;background:#111;box-shadow:0 0 30px lime;max-width:420px;margin:20px auto;box-sizing:border-box;word-break:break-all}
+button.copy{background:lime;color:#000;padding:18px 40px;border:none;border-radius:15px;font-weight:bold;font-size:22px;margin:10px auto;display:block}
+p{padding:0 15px;word-wrap:break-word;box-sizing:border-box}
 </style></head><body>
 <img src="https://files.catbox.moe/5kxxcs.jpg" />
-<h1 style="color:lime;font-size:36px">YOUR CODE:</h1>
-<h1 class="code">${code}</h1>
-<p style="font-size:20px">WhatsApp > Linked Devices > Link with phone number > Paste NOW!</p>
-<p style="color:yellow;font-size:18px">It WILL say "Logging in" — Be FAST 20 sec!</p>
+<h1 style="color:lime;font-size:32px">YOUR CODE:</h1>
+<h1 class="code" id="myCode">${code}</h1>
+<button class="copy" onclick="copyCode()">📋 TAP TO COPY CODE</button>
+<p id="copied" style="color:lime;font-size:20px;font-weight:bold"></p>
+<p style="font-size:19px">WhatsApp > Linked Devices > Link with phone number > Paste Code</p>
+<p style="color:yellow;font-size:18px">It WILL say "Logging in" - Wait 50 seconds, DON'T cancel!<br>It takes 50 sec to log in!</p>
+<script>
+function copyCode(){
+  let t = document.getElementById('myCode').innerText;
+  navigator.clipboard.writeText(t).then(()=>{ document.getElementById('copied').innerText='✅ COPIED! Now go paste in WhatsApp!'; });
+}
+</script>
 </body></html>`)
   }catch(e){
     res.send('Error: '+e.message+'<br><a href="/clear">Click to Clear and try again</a>')
