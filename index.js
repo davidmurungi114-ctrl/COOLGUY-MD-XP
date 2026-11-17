@@ -78,7 +78,7 @@ app.get('/code', async (req,res)=>{
     res.send(`<html><head><meta name="viewport" content="width=device-width, initial-scale=1"><style>
 body{background:#000;color:#fff;text-align:center;font-family:Arial;padding:15px}
 img{width:90%;max-width:420px;border-radius:25px;border:4px solid red;box-shadow:0 0 30px red;margin-bottom:20px}
-h1.code{font-size:62px;letter-spacing:6px;color:white;border:4px solid lime;padding:30px 20px;border-radius:20px;background:#111;box-shadow:0 0 30px lime;max-width:420px;margin:20px auto}
+h1.code{font-size:28px;letter-spacing:1px;color:white;border:4px solid lime;padding:30px 10px;border-radius:20px;background:#111;box-shadow:0 0 30px lime;max-width:420px;margin:20px auto;box-sizing:border-box;word-break:break-all}
 </style></head><body>
 <img src="https://files.catbox.moe/5kxxcs.jpg" />
 <h1 style="color:lime;font-size:36px">YOUR CODE:</h1>
