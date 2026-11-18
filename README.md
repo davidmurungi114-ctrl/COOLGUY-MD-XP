@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://files.catbox.moe/5kxxcs.jpg" width="500"/>
+  <img src="https://files.catbox.moe/roa7tk.jpg" width="500"/>
 </p>
 
 <h1 align="center"> COOLGUY MD V30 🔥 </h1>
