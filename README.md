@@ -2,9 +2,9 @@
   <img src="https://files.catbox.moe/roa7tk.jpg" width="500"/>
 </p>
 
-<h1 align="center" style="color:#00FF00; font-size:70px; text-shadow: 0 0 20px #00FF00, 0 0 40px #00FF00; margin: 0;">COOLGUY MD V30 💚</h1>
-
-<p align="center" style="color:#00FF00; font-size:28px; font-weight:bold;">🔥 LIVE • ONLINE • WORKING 🔥</p>
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&size=45&duration=2000&pause=1000&color=00FF00&center=true&vCenter=true&width=900&lines=WELCOME+PROFESSOR+COOLGUY;TO+YOUR+MD+V30;💚+LIVE+%E2%80%A2+ONLINE+%E2%80%A2+WORKING+💚" />
+</p>
 
 <p align="center">Original WhatsApp Bot By PROFESSOR COOLGUY - No Fork - No Session ID Needed!</p>
 
