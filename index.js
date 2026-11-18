@@ -40,7 +40,7 @@ initBot()
 
 app.get('/', (req,res)=>{
 res.send(`<html><head><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{background:#000;color:#fff;text-align:center;font-family:Arial;padding:15px}img{width:95%;max-width:500px;border-radius:25px;border:4px solid red;box-shadow:0 0 30px red}h1{font-size:36px;color:red}a{margin:10px;display:inline-block}</style></head><body>
-<img src="https://files.catbox.moe/5kxxcs.jpg" />
+<img src="https://files.catbox.moe/roa7tk.jpg" />
 <h1>🔥 COOLGUY-MD-XP 🔥</h1><h2>BY PROFESSOR COOLGUY</h2>
 <a href="/pair" style="background:red;color:white;padding:20px 40px;border-radius:15px;text-decoration:none;font-weight:bold;font-size:22px;box-shadow:0 0 20px red;margin-top:20px">📲 TAP TO PAIR WHATSAPP</a><br><br>
 <a href="/clear" style="color:gray">Clear Session</a></body></html>`)
@@ -54,7 +54,7 @@ h1{font-size:30px} p{color:#aaa;font-size:18px}
 input{padding:24px;width:92%;max-width:420px;border-radius:15px;border:3px solid red;margin:15px 0;font-size:22px;text-align:center;background:#111;color:white}
 button{background:red;color:white;padding:24px 50px;border:none;border-radius:15px;font-weight:bold;font-size:24px;margin-top:15px;box-shadow:0 0 20px red;width:92%;max-width:420px}
 </style></head><body>
-<img src="https://files.catbox.moe/5kxxcs.jpg" />
+<img src="https://files.catbox.moe/roa7tk.jpg" />
 <h1>ENTER WHATSAPP NUMBER</h1><p>2567XXXXXXXX (no +)</p>
 <form action="/code" method="GET">
 <input type="text" name="number" placeholder="2567XXXXXXXX" required /><br>
@@ -71,7 +71,10 @@ app.get('/clear', async (req,res)=>{
 
 app.get('/code', async (req,res)=>{
   let number = req.query.number.replace(/[^0-9]/g,'')
-  if(!sock){ await initBot(); await new Promise(r=>setTimeout(r,2000)) }
+  // WAIT FOR BOT TO BE READY - STOPS FAKE CODE!
+  if(!sock){ await initBot(); }
+  await new Promise(r=>setTimeout(r,5000))
+  if(!sock){ return res.send('Bot starting... Wait 10 sec then <a href="/pair">TRY AGAIN</a>') }
   try{
     let code = await sock.requestPairingCode(number)
     console.log('CODE:', code, 'for', number)
@@ -82,7 +85,7 @@ h1.code{font-size:28px;letter-spacing:1px;color:white;border:4px solid lime;padd
 button.copy{background:lime;color:#000;padding:18px 40px;border:none;border-radius:15px;font-weight:bold;font-size:22px;margin:10px auto;display:block}
 p{padding:0 15px;word-wrap:break-word;box-sizing:border-box}
 </style></head><body>
-<img src="https://files.catbox.moe/5kxxcs.jpg" />
+<img src="https://files.catbox.moe/roa7tk.jpg" />
 <h1 style="color:lime;font-size:32px">YOUR CODE:</h1>
 <h1 class="code" id="myCode">${code}</h1>
 <button class="copy" onclick="copyCode()">📋 TAP TO COPY CODE</button>
