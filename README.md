@@ -2,7 +2,7 @@
   <img src="https://files.catbox.moe/5kxxcs.jpg" width="500"/>
 </p>
 
-<h1 align="center"> COOLGUY-MD-XP 🔥 </h1>
+<h1 align="center"> COOLGUY MD V30 🔥 </h1>
 
 <p align="center">Original WhatsApp Bot By PROFESSOR COOLGUY - No Fork - No Session ID Needed!</p>
 
@@ -14,7 +14,7 @@
 
 <p align="center">
   <a href="https://coolguy-md-xp.onrender.com/pair">
-    <img src="https://img.shields.io/badge/TAP_TO_PAIR_COOLGUY_MD_XP-FF0000?style=for-the-badge&logo=whatsapp&logoColor=white" width="400"/>
+    <img src="https://img.shields.io/badge/TAP_TO_PAIR_COOLGUY_MD_V30-FF0000?style=for-the-badge&logo=whatsapp&logoColor=white" width="400"/>
   </a>
 </p>
 
